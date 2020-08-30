@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
-function dropItem() {
-
-}
 
 const Header = (props) => {
+
+    const [dropdownOpen, setDropdownOpen] = React.useState(false);
+    const toggle = () => setDropdownOpen(prevState => !prevState);
 
     const HeaderContainer = styled.div`
     height: 100px;
@@ -32,15 +33,7 @@ const Header = (props) => {
     display: flex;
     flex-direction: row;
     align-self: center;
-    margin-left: 10rem;
-    `
-
-    const DropdownBtn = styled.button`
-    color: #333333;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    text-align: center;
+    margin-left: 8rem;
     `
 
     const NavLink = styled.a`
@@ -49,6 +42,15 @@ const Header = (props) => {
     font-style: normal;
     font-weight: bold;
     text-align: center;
+    `
+
+    const LoginBtn = styled.button`
+    background: linear-gradient(178.18deg, #FD749B -13.56%, #281AC8 158.3%);
+    border-radius: 100px;
+    height: 41px;
+    width: 157.84px;
+    color: white;
+    align-self: center;
     `
 
 
@@ -64,27 +66,32 @@ const Header = (props) => {
                     <NavBar>
                         <ul className="navbar-nav mr-auto d-flex flex-row align-items-center">
                             <li className="nav-item active ml-5">
-                                <NavLink className="nav-link" href="#">Home <span className="sr-only">(current)</span></NavLink>
+                                <NavLink className="nav-link text-decoration-none" href="#">Home <span className="sr-only">(current)</span></NavLink>
                             </li>
                             <li className="nav-item ml-5">
-                                <NavLink className="navList" href="#">About Us</NavLink>
+                                <NavLink className="navList text-decoration-none" href="#">About Us</NavLink>
                             </li>
                             <li className="nav-item ml-5">
-                                <NavLink className="navList" href="#">Blog</NavLink>
+                                <NavLink className="navList text-decoration-none" href="#">Blog</NavLink>
                             </li>
                             <li className="nav-item ml-5">
-                                <NavLink className="navList" href="#">Contact Us</NavLink>
+                                <NavLink className="navList text-decoration-none" href="#">Contact Us</NavLink>
                             </li>
                         </ul>
                     </NavBar>
 
                     {/*Button*/}
-                    <div className="align-self-center d-flex flex-row" style={{marginLeft: "6rem"}}>
-                        <DropdownBtn className="btn d-flex flex-row">Sell Bitcoin / Giftcard <span style={{marginLeft: "3px", alignSelf: "center"}} onClick={dropItem}>
-                            <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75271 5.13453C4.35549 5.71401 3.50028 5.71401 3.10306 5.13453L0.656524 1.56539C0.201637 0.901777 0.676795 0 1.48135 0H6.37442C7.17897 0 7.65413 0.901778 7.19924 1.56539L4.75271 5.13453Z" fill="#333333"/>
-                            </svg>
-                        </span></DropdownBtn>
+                    <div className="align-self-center d-flex" style={{marginLeft: "6rem"}}>
+                        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                            <DropdownToggle style={{color: "#333333", fontFamily: "Poppins", fontStyle: "normal", fontWeight: "bold", textAlign: "center", backgroundColor: "#ffffff", borderColor: "white"}} caret>Sell Bitcoin / Giftcard </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem>Sell Bitcoin</DropdownItem>
+                                <DropdownItem>Sell Giftcard</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                    </div>
+                    <div className="d-flex ml-5">
+                        <LoginBtn>Login</LoginBtn>
                     </div>
                 </Container>
             </HeaderContainer>
